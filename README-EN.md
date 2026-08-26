@@ -172,7 +172,45 @@ The skill saves these entries to Hermes memory:
 | File conventions | Chat/Department directory structure |
 | Obsidian paths | Vault root and three sub-directories |
 | Knowledge flow | `记忆区 → 收藏区 → 知识区` |
-| Working habits | Analysis-first, approval-required rules |
+|| Working habits | Analysis-first, approval-required rules |
+
+---
+
+## Cross-Agent Compatibility
+
+This skill follows the **[agentskills.io](https://agentskills.io)** open standard, meaning the same `SKILL.md` works across multiple AI agent platforms.
+
+### Verified Compatible Agent Platforms
+
+| Agent Platform | Compatibility | Path |
+|---------------|---------------|------|
+| **Hermes Agent** | ✅ Native support | `~/.hermes/skills/` |
+| **Claude Code** | ✅ Native support | `~/.claude/skills/` |
+| **OpenAI Codex** | ✅ Native support | `~/.agents/skills/` |
+| **OpenClaw** | ✅ Native support | `~/.agents/skills/` |
+| **Vercel skills.sh** | ✅ Native support | `~/.skills/` |
+| **LobeHub** | ✅ Native support | Via `.well-known/skills/index.json` |
+| **Cursor** | ⚠️ Conversion script needed | Auto-generates `.cursorrules` |
+| **Aider** | ⚠️ Conversion script needed | Auto-generates `CONVENTIONS.md` |
+
+### Configuring Shared Directory
+
+Add external skill directories to Hermes' `config.yaml`:
+
+```yaml
+skills:
+  external_dirs:
+    - ~/.agents/skills/      # Shared skill library
+    - ~/.claude/skills/      # Claude Code skills
+```
+
+### Notes
+
+- ✅ Hermes-specific fields (`metadata.hermes.*`) are safely ignored by other agents
+- ✅ Core skill format is cross-platform compatible — no need to rewrite
+- ⚠️ Some Hermes-specific tools may not be available in other agents, but core functionality works
+
+---
 
 ## Prerequisites
 

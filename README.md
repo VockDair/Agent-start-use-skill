@@ -172,7 +172,45 @@ Skill 会向 Hermes 记忆库保存以下条目：
 | 文件约定 | Chat/Department 目录结构 |
 | Obsidian 路径 | 库根目录和三个子库路径 |
 | 知识流向 | `记忆区 → 收藏区 → 知识区` |
-| 办事习惯 | 先分析后执行、需批准才能行动 |
+| 工作习惯 | 先分析后执行、需批准才能行动 |
+
+---
+
+## 跨 Agent 兼容性
+
+本 Skill 遵循 **[agentskills.io](https://agentskills.io)** 开放标准，同一份 `SKILL.md` 可在多个主流 AI Agent 平台运行。
+
+### 已验证兼容的 Agent 平台
+
+| Agent 平台 | 兼容性 | 路径 |
+|-----------|--------|------|
+| **Hermes Agent** | ✅ 原生支持 | `~/.hermes/skills/` |
+| **Claude Code** | ✅ 原生支持 | `~/.claude/skills/` |
+| **OpenAI Codex** | ✅ 原生支持 | `~/.agents/skills/` |
+| **OpenClaw** | ✅ 原生支持 | `~/.agents/skills/` |
+| **Vercel skills.sh** | ✅ 原生支持 | `~/.skills/` |
+| **LobeHub** | ✅ 原生支持 | 通过 `.well-known/skills/index.json` |
+| **Cursor** | ⚠️ 需转换脚本 | 自动生成 `.cursorrules` |
+| **Aider** | ⚠️ 需转换脚本 | 自动生成 `CONVENTIONS.md` |
+
+### 配置共享目录
+
+在 Hermes 的 `config.yaml` 中添加外部技能目录：
+
+```yaml
+skills:
+  external_dirs:
+    - ~/.agents/skills/      # 共享技能库
+    - ~/.claude/skills/      # Claude Code 技能
+```
+
+### 注意事项
+
+- ✅ Hermes 专有字段（`metadata.hermes.*`）会被其他 Agent 忽略，安全无影响
+- ✅ 核心技能格式跨平台通用，无需重复编写
+- ⚠️ 部分 Hermes 专用工具在其他 Agent 中不可用，但基础功能仍生效
+
+---
 
 ## 前置要求
 
