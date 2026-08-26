@@ -1,90 +1,90 @@
-# Agent Start Use
+# Agent Start Use（Agent 启动向导）
 
-A Hermes Agent skill for guided onboarding and personalization setup.
+Hermes Agent 的技能，用于引导新用户完成初始化配置和个性化设置。
 
-## Overview
+## 概述
 
-**Agent Start Use** guides new Hermes Agent users through a structured, conversational onboarding process covering four core personalization areas:
+**Agent Start Use** 通过结构化的对话流程，引导新用户完成四项核心个性化设置：
 
-1. **Agent Naming** — Set agent display name and user address
-2. **File Management** — Establish organized workspace directory structure
-3. **Obsidian Knowledge Base** — Create a three-tier knowledge system
-4. **Working Habits** — Define interaction protocols and permissions
+1. **Agent 命名** — 设定 Agent 名字和您的称呼
+2. **文件管理** — 建立规范的工作区目录结构
+3. **Obsidian 知识库** — 搭建三级知识管理系统
+4. **办事习惯** — 设定协作规则和权限协议
 
-The skill runs interactively and **never auto-executes** without explicit user approval — modeling the "don't act without permission" principle from day one.
+该 Skill 采用交互式运行，**不会在未经您明确同意的情况下擅自执行** — 从一开始就践行"不批准不动手"的原则。
 
-## Features
+## 功能特性
 
-- ✅ Step-by-step guided setup with clear explanations
-- ✅ Mandatory planning phase before any execution
-- ✅ Automatic memory persistence for all preferences
-- ✅ Directory creation and verification
-- ✅ Obsidian vault structure generation
-- ✅ Working protocol establishment
-- ✅ Cross-platform support (Linux, macOS, Windows)
+- ✅ 分步骤引导设置，每一步都有清晰说明
+- ✅ 强制规划阶段，任何操作前必须获得确认
+- ✅ 自动保存偏好到记忆库，跨会话持久化
+- ✅ 自动创建并验证目录结构
+- ✅ 生成 Obsidian 知识库框架
+- ✅ 建立工作协议规则
+- ✅ 支持跨平台（Linux、macOS、Windows）
 
-## Installation
+## 安装方法
 
-### Method 1: Manual Installation
+### 方法一：手动安装
 
-1. Download this repository or clone it:
+1. 下载此仓库或克隆：
    ```bash
    git clone https://github.com/your-org/agent-start-use.git
    ```
 
-2. Copy the skill directory to your Hermes skills folder:
+2. 将 Skill 目录复制到 Hermes 技能文件夹：
    ```bash
    cp -r agent-start-use ~/.hermes/skills/productivity/
    ```
 
-3. Restart Hermes Agent or reload skills:
+3. 重启 Hermes Agent 或重载技能：
    ```bash
    hermes skills reload
    ```
 
-### Method 2: Via Hermes CLI
+### 方法二：通过 Hermes CLI 安装
 
-If this skill is published to the Hermes skills registry:
+如果此 Skill 已发布到 Hermes 技能注册表：
 ```bash
 hermes skills install official/productivity/agent-start-use
 ```
 
-## Usage
+## 使用方法
 
-### Trigger the Skill
+### 触发 Skill
 
-Say any of these phrases to start the initialization:
-- **"初始化调校"** (Chinese trigger)
+说出以下任意短语即可启动初始化：
+- **"初始化调校"**（中文触发词）
 - "Help me set up my agent"
 - "Guide me through onboarding"
 - "Start fresh configuration"
 
-### What Happens
+### 执行流程
 
-1. **Step 0 — Planning**: Agent presents a complete setup plan with all steps, required inputs, and storage locations
-2. **Step 1 — Naming**: Set agent name and user address
-3. **Step 2 — File Management**: Create organized workspace directories
-4. **Step 3 — Obsidian Setup**: Build three-tier knowledge base
-5. **Step 4 — Working Habits**: Save interaction protocols to memory
-6. **Step 5 — Verification**: Generate completion report
+1. **Step 0 — 规划阶段**：Agent 展示完整设置方案，列出所有步骤、所需输入和存储位置
+2. **Step 1 — 命名设置**：设定 Agent 名字和用户称呼
+3. **Step 2 — 文件管理**：创建规范的工作区目录
+4. **Step 3 — Obsidian 设置**：构建三级知识库
+5. **Step 4 — 办事习惯**：保存交互协议到记忆库
+6. **Step 5 — 验证报告**：生成完成报告
 
-### Example Session
+### 示例会话
 
 ```
-User: 初始化调校
+用户: 初始化调校
 
 Agent: 您好！我是 Hermes Agent 的初始化助手...
-       [presents full initialization plan]
+       [展示完整初始化方案]
        
-User: 开始
+用户: 开始
 
 Agent: 【Step 1: 命名】请告诉我...
-       [collects preferences and saves to memory]
+       [收集偏好并保存到记忆]
        
-User: Alice / 艾莉丝 / Boss
+用户: Alice / 艾莉丝 / Boss
 
 Agent: 已记录：我是艾莉丝（Alice），今后称呼您为 Boss。
-       [continues through all steps...]
+       [继续后续步骤...]
 
 ═══════════════════════════════════
   Agent 初始化调校完成报告
@@ -92,130 +92,130 @@ Agent: 已记录：我是艾莉丝（Alice），今后称呼您为 Boss。
 ...
 ```
 
-## Workflow Diagram
+## 工作流程图
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    Step 0: Planning                         │
-│  Present full setup plan → Wait for user approval           │
+│                    Step 0: 规划阶段                          │
+│  展示完整方案 → 等待用户确认                                  │
 └──────────────────────────┬──────────────────────────────────┘
-                           │ User says "开始"
+                           │ 用户说"开始"
                            ▼
 ┌─────────────────────────────────────────────────────────────┐
-│              Step 1: Agent Naming                           │
-│  Collect: English name, Chinese name, user address          │
-│  Store: Memory (persists across sessions)                   │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│            Step 2: File Management                          │
-│  Create: Chat/ and Department/ directories                  │
-│  Store: Filesystem + Memory convention                      │
+│              Step 1: Agent 命名                              │
+│  收集：英文名、中文名、用户称呼                               │
+│  存储：记忆库（跨会话持久化）                                  │
 └──────────────────────────┬──────────────────────────────────┘
                            │
                            ▼
 ┌─────────────────────────────────────────────────────────────┐
-│            Step 3: Obsidian Knowledge Base                  │
-│  Create: Memory-hub, Collect-hub, Knowledge-hub             │
-│  Store: Filesystem + Memory convention                      │
-│  Prerequisite: Obsidian installed                           │
+│            Step 2: 文件管理                                  │
+│  创建：Chat/ 和 Department/ 目录                              │
+│  存储：文件系统 + 记忆库约定                                   │
 └──────────────────────────┬──────────────────────────────────┘
                            │
                            ▼
 ┌─────────────────────────────────────────────────────────────┐
-│            Step 4: Working Habits                           │
-│  Save: Analysis-first, approval-required protocols          │
-│  Store: Memory                                              │
+│            Step 3: Obsidian 知识库                           │
+│  创建：Memory-hub、Collect-hub、Knowledge-hub                 │
+│  存储：文件系统 + 记忆库约定                                   │
+│  前提：需安装 Obsidian                                        │
 └──────────────────────────┬──────────────────────────────────┘
                            │
                            ▼
 ┌─────────────────────────────────────────────────────────────┐
-│              Step 5: Verification                           │
-│  Generate completion report with all settings               │
+│            Step 4: 办事习惯                                  │
+│  保存：先分析后执行、需批准才能行动                            │
+│  存储：记忆库                                                │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────┐
+│              Step 5: 验证报告                                │
+│  生成包含所有设置的完成报告                                    │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## Directory Structure
+## 目录结构
 
-After initialization, your workspace will be organized as:
+初始化完成后，您的工作区将按如下结构组织：
 
 ```
-Workspace Root/
-├── Chat/                          # Daily conversation files
-│   └── YYYY-MM-DD-topic/
-│       ├── Temp/                  # Temporary files
-│       └── output/                # Outputs and artifacts
+工作区根目录/
+├── Chat/                          # 日常对话文件
+│   └── YYYY-MM-DD-主题/
+│       ├── Temp/                  # 临时文件
+│       └── output/                # 产出物
 │
-└── Department/                    # Department/team task files
-    └── team-name/
+└── Department/                    # 部门/团队任务文件
+    └── 部门名/
         └── Project/
-            └── project-type-name/
-                ├── temp/          # Temporary files
-                └── output/        # Outputs and artifacts
+            └── 项目类型-名称/
+                ├── temp/          # 临时文件
+                └── output/        # 产出物
 
-Obsidian Vault/
-├── Memory-hub/                    # Daily insights &经验
-├── Collect-hub/                   # Collected resources
-└── Knowledge-hub/                 # Structured knowledge
+Obsidian 库/
+├── Memory-hub/                    # 记忆区 — 日常经验和洞察
+├── Collect-hub/                   # 收藏区 — 资料收藏
+└── Knowledge-hub/                 # 知识区 — 结构化知识
 ```
 
-## Memory Entries
+## 记忆条目
 
-The skill saves these entries to Hermes memory:
+Skill 会向 Hermes 记忆库保存以下条目：
 
-| Entry | Content |
-|-------|---------|
-| Agent name | `Agent英文名 <name>，中文名 <name-cn>` |
-| User address | `用户称呼为 <address>` |
-| Workspace path | `默认工作区：<path>` |
-| File conventions | Chat/Department directory structure |
-| Obsidian paths | Vault root and three sub-directories |
-| Knowledge flow | `记忆区 → 收藏区 → 知识区` |
-| Working habits | Analysis-first, approval-required rules |
+| 条目 | 内容 |
+|------|------|
+| Agent 名 | `Agent英文名 <name>，中文名 <name-cn>` |
+| 用户称呼 | `用户称呼为 <address>` |
+| 工作区路径 | `默认工作区：<path>` |
+| 文件约定 | Chat/Department 目录结构 |
+| Obsidian 路径 | 库根目录和三个子库路径 |
+| 知识流向 | `记忆区 → 收藏区 → 知识区` |
+| 办事习惯 | 先分析后执行、需批准才能行动 |
 
-## Prerequisites
+## 前置要求
 
-- **Hermes Agent** installed and running
-- **Obsidian** (optional) — required only for Step 3; can be skipped if not installed
-- **Basic terminal access** — for directory creation commands
+- **Hermes Agent** 已安装并运行
+- **Obsidian**（可选）— 仅 Step 3 需要；如未安装可跳过
+- **基本终端访问权限** — 用于执行目录创建命令
 
-## Pitfalls & Best Practices
+## 注意事项
 
-### For Users
-- ✅ Review the Step 0 plan carefully before confirming
-- ✅ Provide absolute paths (e.g., `F:\workspace\Hermes-Workspace`)
-- ✅ Ensure Obsidian is installed before Step 3 if you want the knowledge base
+### 用户须知
+- ✅ 仔细审阅 Step 0 的方案后再确认
+- ✅ 提供绝对路径（如 `F:\workspace\Hermes-Workspace`）
+- ✅ 如需 Step 3 的知识库功能，请确保已安装 Obsidian
 
-### For Skill Authors
-- ⚠️ Never auto-execute without explicit user approval
-- ⚠️ Verify directory creation with `terminal` commands
-- ⚠️ Keep memory entries concise (one fact per entry)
-- ⚠️ Use forward slashes in terminal commands on Windows
+### 技能作者须知
+- ⚠️ 未经用户明确批准绝不擅自执行
+- ⚠️ 使用 `terminal` 命令验证目录创建是否成功
+- ⚠️ 记忆条目保持简洁（一条记忆一个事实）
+- ⚠️ Windows 上使用正斜杠（如 `C:/Users/...`）
 
-## Related Skills
+## 相关 Skills
 
-- [`hermes-agent`](https://hermes-agent.nousresearch.com/docs) — Core Hermes Agent configuration
-- [`obsidian`](../note-taking/obsidian) — Read/write notes in Obsidian vaults
-- [`weekly-review-planning`](../productivity/weekly-review-planning) — Regular knowledge base maintenance
+- [`hermes-agent`](https://hermes-agent.nousresearch.com/docs) — Hermes Agent 核心配置
+- [`obsidian`](../note-taking/obsidian) — 读取和编辑 Obsidian 笔记
+- [`weekly-review-planning`](../productivity/weekly-review-planning) — 定期维护知识库
 
-## License
+## 许可证
 
-MIT License — see [LICENSE](LICENSE) for details.
+MIT License — 详见 [LICENSE](LICENSE)
 
-## Author
+## 作者
 
 Hermes Agent
 
-## Support
+## 支持
 
-- Hermes Agent Documentation: https://hermes-agent.nousresearch.com/docs
-- GitHub Issues: [Create an issue](../../issues)
+- Hermes Agent 文档：https://hermes-agent.nousresearch.com/docs
+- GitHub Issues：[创建 Issue](../../issues)
 
 ---
 
 <div align="center">
 
-**Built with ❤️ for the Hermes Agent community**
+**用 ❤️ 为 Hermes Agent 社区打造**
 
 </div>
