@@ -8,12 +8,13 @@ This file contains the actual conversation flow that the agent follows during in
 
 **Agent says:**
 ```
-您好！我是 Hermes Agent 的初始化助手。我将引导您完成四项个性化设置：
+您好！我是 Hermes Agent 的初始化助手。我将引导您完成五项个性化设置：
 
 1. **命名** — 为 Agent 取一个名字，设定您的称呼
-2. **文件管理** — 建立规范的工作区目录结构
+2. **文件管理** — 建立规范的工作区目录结构（Chat、Department、Tools、Sessions）
 3. **Obsidian 资料库** — 搭建三级知识管理系统
 4. **办事习惯** — 设定协作规则
+5. **会话归档** — 配置自动归档和存储路径
 
 请确认以下方案：
 
@@ -26,7 +27,7 @@ This file contains the actual conversation flow that the agent follows during in
 
 ### Step 2: 文件管理规范
 - 您需要提供：默认工作区路径
-- 将创建：Chat/（日常对话）和 Department/（部门任务）两个子目录
+- 将创建：Chat/（日常对话）、Department/（部门任务）、Tools/（工作工具）、Sessions/（会话归档）
 - 存储位置：文件系统 + 记忆库
 
 ### Step 3: Obsidian 资料库
@@ -38,6 +39,10 @@ This file contains the actual conversation flow that the agent follows during in
 ### Step 4: 办事习惯
 - 设定：先分析后执行、需明确指令才能行动
 - 存储位置：记忆库
+
+### Step 5: 会话归档配置
+- 配置：自动归档开关、归档目录、保留天数
+- 存储位置：Hermes config.yaml
 
 ---
 确认后请回复「开始」，或提出修改意见。
@@ -80,6 +85,8 @@ This file contains the actual conversation flow that the agent follows during in
 我将在此目录下创建：
 - Chat/ — 日常对话临时文件
 - Department/ — 部门/群组任务文件
+- Tools/ — 工作工具（图片处理等）
+- Sessions/ — Agent会话归档目录
 ```
 
 **Agent 执行后确认:**
@@ -87,10 +94,14 @@ This file contains the actual conversation flow that the agent follows during in
 已创建目录结构：
 {工作区路径}\Chat\
 {工作区路径}\Department\
+{工作区路径}\Tools\
+{工作区路径}\Sessions\
 
 文件管理约定：
 • 日常对话 → Chat\日期-主题\Temp\ 和 output\
 • 部门任务 → Department\部门名\Project\项目名\temp\ 和 output\
+• 工作工具 → Tools\
+• 会话归档 → Sessions\（自动归档，3天后）
 ```
 
 ---
@@ -138,6 +149,23 @@ This file contains the actual conversation flow that the agent follows during in
 
 ---
 
+### Step 5: 会话归档配置
+
+**Agent 执行后确认:**
+```
+【Step 5: 会话归档配置】
+
+已配置以下会话归档设置：
+• 自动归档：已开启
+• 归档目录：{工作区路径}\Sessions\
+• 归档周期：3天后自动归档
+• 保留天数：90天
+
+此设置已写入 Hermes config.yaml。
+```
+
+---
+
 ## Phase 3: 完成报告
 
 **Agent 输出:**
@@ -154,6 +182,8 @@ This file contains the actual conversation flow that the agent follows during in
   默认工作区：{路径}
   Chat目录：已创建 ✓
   Department目录：已创建 ✓
+  Tools目录：已创建 ✓ — 工作工具存储
+  Sessions目录：已创建 ✓ — 会话归档
 
 三、Obsidian资料库
   根目录：{路径}
@@ -163,6 +193,11 @@ This file contains the actual conversation flow that the agent follows during in
 
 四、办事习惯
   已保存至记忆库 ✓
+
+五、Agent会话配置
+  归档目录：{路径}\Sessions\
+  自动归档：已开启（3天后）✓
+  保留天数：90天
 
 ═══════════════════════════════════
 

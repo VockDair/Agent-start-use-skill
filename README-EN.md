@@ -4,12 +4,13 @@ A Hermes Agent skill for guided onboarding and personalization setup.
 
 ## Overview
 
-**Agent Start Use** guides new Hermes Agent users through a structured, conversational onboarding process covering four core personalization areas:
+**Agent Start Use** guides new Hermes Agent users through a structured, conversational onboarding process covering five core personalization areas:
 
 1. **Agent Naming** — Set agent display name and user address
-2. **File Management** — Establish organized workspace directory structure
+2. **File Management** — Establish organized workspace directory structure (Chat, Department, Tools, Sessions)
 3. **Obsidian Knowledge Base** — Create a three-tier knowledge system
 4. **Working Habits** — Define interaction protocols and permissions
+5. **Session Archiving** — Configure auto-archive and storage path
 
 The skill runs interactively and **never auto-executes** without explicit user approval — modeling the "don't act without permission" principle from day one.
 
@@ -29,7 +30,7 @@ The skill runs interactively and **never auto-executes** without explicit user a
 
 1. Download this repository or clone it:
    ```bash
-   git clone https://github.com/your-org/agent-start-use.git
+   git clone https://github.com/VockDair/Agent-start-use-skill.git
    ```
 
 2. Copy the skill directory to your Hermes skills folder:
@@ -63,10 +64,11 @@ Say any of these phrases to start the initialization:
 
 1. **Step 0 — Planning**: Agent presents a complete setup plan with all steps, required inputs, and storage locations
 2. **Step 1 — Naming**: Set agent name and user address
-3. **Step 2 — File Management**: Create organized workspace directories
+3. **Step 2 — File Management**: Create organized workspace directories (including Tools and Sessions)
 4. **Step 3 — Obsidian Setup**: Build three-tier knowledge base
 5. **Step 4 — Working Habits**: Save interaction protocols to memory
-6. **Step 5 — Verification**: Generate completion report
+6. **Step 5 — Session Configuration**: Configure auto-archive and archive directory
+7. **Step 6 — Verification**: Generate completion report
 
 ### Example Session
 
@@ -110,8 +112,9 @@ Agent: 已记录：我是艾莉丝（Alice），今后称呼您为 Boss。
                            ▼
 ┌─────────────────────────────────────────────────────────────┐
 │            Step 2: File Management                          │
-│  Create: Chat/ and Department/ directories                  │
+│  Create: Chat/, Department/, Tools/, Sessions/ directories  │
 │  Store: Filesystem + Memory convention                      │
+│  Extra: Configure sessions.auto_archive + archive_dir       │
 └──────────────────────────┬──────────────────────────────────┘
                            │
                            ▼
@@ -131,7 +134,14 @@ Agent: 已记录：我是艾莉丝（Alice），今后称呼您为 Boss。
                            │
                            ▼
 ┌─────────────────────────────────────────────────────────────┐
-│              Step 5: Verification                           │
+│            Step 5: Session Archive Configuration            │
+│  Configure: sessions.auto_archive + archive_dir             │
+│  Store: Hermes config.yaml                                  │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────┐
+│              Step 6: Verification                           │
 │  Generate completion report with all settings               │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -147,15 +157,20 @@ Workspace Root/
 │       ├── Temp/                  # Temporary files
 │       └── output/                # Outputs and artifacts
 │
-└── Department/                    # Department/team task files
-    └── team-name/
-        └── Project/
-            └── project-type-name/
-                ├── temp/          # Temporary files
-                └── output/        # Outputs and artifacts
+├── Department/                    # Department/team task files
+│   └── team-name/
+│       └── Project/
+│           └── project-type-name/
+│               ├── temp/          # Temporary files
+│               └── output/        # Outputs and artifacts
+│
+├── Tools/                         # Working tools (image processing, etc.)
+│
+└── Sessions/                      # Agent session archive (auto-archive)
+    └── <date>-<session-id>/       # Archived session files
 
 Obsidian Vault/
-├── Memory-hub/                    # Daily insights &经验
+├── Memory-hub/                    # Daily insights & experiences
 ├── Collect-hub/                   # Collected resources
 └── Knowledge-hub/                 # Structured knowledge
 ```
@@ -169,10 +184,11 @@ The skill saves these entries to Hermes memory:
 | Agent name | `Agent英文名 <name>，中文名 <name-cn>` |
 | User address | `用户称呼为 <address>` |
 | Workspace path | `默认工作区：<path>` |
-| File conventions | Chat/Department directory structure |
+| File conventions | Chat/Department/Tools/Sessions directory structure |
 | Obsidian paths | Vault root and three sub-directories |
 | Knowledge flow | `记忆区 → 收藏区 → 知识区` |
-|| Working habits | Analysis-first, approval-required rules |
+| Working habits | Analysis-first, approval-required rules |
+| Session archive | `Sessions archive directory: <path>\Sessions, auto-archive: 3 days` |
 
 ---
 
@@ -248,7 +264,7 @@ Hermes Agent
 ## Support
 
 - Hermes Agent Documentation: https://hermes-agent.nousresearch.com/docs
-- GitHub Issues: [Create an issue](../../issues)
+- GitHub Issues: [Create an issue](https://github.com/VockDair/Agent-start-use-skill/issues)
 
 ---
 

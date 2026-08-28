@@ -30,7 +30,7 @@ Hermes Agent 的技能，用于引导新用户完成初始化配置和个性化�
 
 1. 下载此仓库或克隆：
    ```bash
-   git clone https://github.com/your-org/agent-start-use.git
+   git clone https://github.com/VockDair/Agent-start-use-skill.git
    ```
 
 2. 将 Skill 目录复制到 Hermes 技能文件夹：
@@ -264,7 +264,7 @@ Hermes Agent
 ## 支持
 
 - Hermes Agent 文档：https://hermes-agent.nousresearch.com/docs
-- GitHub Issues：[创建 Issue](../../issues)
+- GitHub Issues：[创建 Issue](https://github.com/VockDair/Agent-start-use-skill/issues)
 
 ---
 
