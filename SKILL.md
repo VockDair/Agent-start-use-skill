@@ -1,7 +1,7 @@
 ---
 name: agent-start-use
-description: "Guides Hermes Agent onboarding setup."
-version: 0.1.0
+description: "Guides Hermes Agent onboarding setup with file management, Obsidian knowledge base, and session archiving."
+version: 0.2.0
 author: Hermes Agent
 license: MIT
 platforms: [linux, macos, windows]
@@ -13,7 +13,7 @@ metadata:
 
 # Agent Start Use
 
-Guides new Hermes Agent users through a structured, conversational onboarding process covering four core personalization areas. Runs interactively — never auto-executes without explicit user approval.
+Guides new Hermes Agent users through a structured, conversational onboarding process covering five core personalization areas. Runs interactively — never auto-executes without explicit user approval.
 
 ## When to Use
 
@@ -64,20 +64,28 @@ Ask: *"以上为初始化方案，请确认后回复「开始」或提出修改�
 
 **Inputs required from user:**
 - Default workspace root path (e.g., `F:\workspace\Hermes-Workspace`)
-- Whether to create the two subdirectories (`Chat/` and `Department/`)
+- Whether to create subdirectories (`Chat/`, `Department/`, `Tools/`, `Sessions/`)
 - Optional: alternative paths per section
 
 **Actions (after approval):**
 1. Create workspace directories:
    ```
-   terminal(command="mkdir -p <workspace>/Chat <workspace>/Department")
+   terminal(command="mkdir -p <workspace>/Chat <workspace>/Department <workspace>/Tools <workspace>/Sessions")
    ```
 2. Save file structure convention to memory via `memory`:
    - Chat temp: `<workspace>/Chat/<日期-对话主题>/Temp/`
    - Chat output: `<workspace>/Chat/<日期-对话主题>/output/`
    - Dept temp: `<workspace>/Department/<部门名称>/Project/<项目类型-名称>/temp/`
    - Dept output: `<workspace>/Department/<部门名称>/Project/<项目类型-名称>/output/`
-3. Verify directories exist and report back.
+   - Tools: `<workspace>/Tools/` — 存储工作工具（如图片处理工具）
+   - Sessions: `<workspace>/Sessions/` — Agent会话归档目录
+3. Configure session auto-archive:
+   ```
+   hermes config set sessions.auto_archive true
+   hermes config set sessions.auto_archive_days 3
+   hermes config set sessions.archive_dir "<workspace>/Sessions"
+   ```
+4. Verify directories exist and report back.
 
 ---
 
@@ -121,7 +129,7 @@ Ask: *"以上为初始化方案，请确认后回复「开始」或提出修改�
 
 ### Step 5 — Verification & Summary
 
-After all four steps complete, produce a final summary report:
+After all five steps complete, produce a final summary report:
 
 ```
 ═══════════════════════════════════
@@ -136,6 +144,8 @@ After all four steps complete, produce a final summary report:
   默认工作区：[路径]
   Chat目录：[路径]\Chat\ （已创建 ✓）
   Department目录：[路径]\Department\ （已创建 ✓）
+  Tools目录：[路径]\Tools\ （已创建 ✓）— 工作工具存储
+  Sessions目录：[路径]\Sessions\ （已创建 ✓）— 会话归档
 
 三、Obsidian资料库
   根目录：[路径]
@@ -145,6 +155,11 @@ After all four steps complete, produce a final summary report:
 
 四、办事习惯
   已保存至记忆库 ✓
+
+五、Agent会话配置
+  归档目录：[路径]\Sessions\
+  自动归档：已开启（3天后）✓
+  保留天数：90天
 
 ═══════════════════════════════════
 ```
