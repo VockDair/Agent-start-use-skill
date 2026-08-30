@@ -1,275 +1,75 @@
-# Agent Start Use（Agent 启动向导）
+# Agent Start Use Skill（初始化调校）
 
-Hermes Agent 的技能，用于引导新用户完成初始化配置和个性化设置。
+指导 Hermes Agent 完成结构化、对话式的初始化配置流程，涵盖文件管理、部门创建与 Kanban 团队配置、Obsidian 知识库和会话归档。
 
-## 概述
+## 目的
 
-**Agent Start Use** 通过结构化的对话流程，引导新用户完成五项核心个性化设置：
+确保新的 Hermes Agent 实例能够正确配置以下七大模块：
+1. Agent 命名和用户偏好设置
+2. 标准化文件管理规范
+3. 部门创建与 Kanban 团队配置
+4. Obsidian 知识库集成
+5. 工作习惯协议
+6. 会话归档配置
 
-1.**Agent 命名** — 设定 Agent 名字和您的称呼
-2.**文件管理** — 建立规范的工作区目录结构（Chat、Department、Tools、Sessions）
-3.**Obsidian 知识库** — 搭建三级知识管理系统
-4.**办事习惯** — 设定协作规则和权限协议
-5.**会话归档配置** — 设置自动归档和存储路径
+## 核心组件
 
-该 Skill 采用交互式运行，**不会在未经您明确同意的情况下擅自执行** — 从一开始就践行"不批准不动手"的原则。
+### Step 1: Agent 命名
+- 设置 Agent 显示名称和用户称呼
+- 存储在 memory 中用于个性化交互
 
-## 功能特性
+### Step 2: 文件管理规范
+- 建立工作区根目录和子目录结构
+- **部门项目结构：**
+  - `F:/workspace/Hermes-Workspace/Department/<部门名称>/Project/<项目名>/`
+  - Kanban 工作区：`<项目名>/kanban-workspace/`
+  - Git worktree 自动创建在 `.worktrees/`
 
-- ✅ 分步骤引导设置，每一步都有清晰说明
-- ✅ 强制规划阶段，任何操作前必须获得确认
-- ✅ 自动保存偏好到记忆库，跨会话持久化
-- ✅ 自动创建并验证目录结构
-- ✅ 生成 Obsidian 知识库框架
-- ✅ 建立工作协议规则
-- ✅ 支持跨平台（Linux、macOS、Windows）
+### Step 3: 部门创建与 Kanban 团队配置（可选）
+**仅当用户确认需要时执行。**
 
-## 安装方法
+5 步流程：
+1. **建立 Profile 角色** — 创建 director/backend/frontend/coder/tester 各独立 Profile
+2. **创建部门** — 建立部门物理目录 `<workspace>/Department/<部门名称>/Project/`
+3. **角色入职部门** — 在 memory 中记录部门架构，配置 director 的 kanban 权限
+4. **建立部门流程** — 文档化协作规范至 WORKFLOW.md
+5. **配置 Kanban 与工作区** — 初始化看板，设置默认工作区，启动 Gateway
 
-### 方法一：手动安装
+### Step 4: Obsidian 知识库
+- 创建 Memory-hub、Collect-hub、Knowledge-hub
+- 建立知识提炼流程
 
-1. 下载此仓库或克隆：
-   ```bash
-   git clone https://github.com/VockDair/Agent-start-use-skill.git
-   ```
+### Step 5: 工作习惯
+- 文档化交互协议
+- 在 memory 中存储行为规则
 
-2. 将 Skill 目录复制到 Hermes 技能文件夹：
-   ```bash
-   cp -r agent-start-use ~/.hermes/skills/productivity/
-   ```
+### Step 6: 验证与总结
+- 生成初始化完成报告
 
-3. 重启 Hermes Agent 或重载技能：
-   ```bash
-   hermes skills reload
-   ```
+## 关键特性
 
-### 方法二：通过 Hermes CLI 安装
+- ✅ 交互式执行，每步需用户确认
+- ✅ 不可自动执行任务
+- ✅ Step 3 完全可选（无部门计划则跳过）
+- ✅ 支持 Windows/Linux/macOS
+- ✅ 集成 Git worktree 支持
 
-如果此 Skill 已发布到 Hermes 技能注册表：
-```bash
-hermes skills install official/productivity/agent-start-use
-```
+## 相关文件
+
+- `SKILL.md` — 主技能文档（含详细步骤）
+- `references/kanban-workflow.md` — Kanban 工作流详细规范
+- `references/templates.md` — SOUL.md 角色模板
+- `references/conversation-script.md` — 对话脚本
 
 ## 使用方法
 
-### 触发 Skill
+触发方式："初始化调校" 或类似请求。
 
-说出以下任意短语即可启动初始化：
-- **"初始化调校"**（中文触发词）
-- "Help me set up my agent"
-- "Guide me through onboarding"
-- "Start fresh configuration"
+始终先展示完整计划（Step 0），等待用户明确批准后再执行。
 
-### 执行流程
+## 版本历史
 
-1. **Step 0 — 规划阶段**：Agent 展示完整设置方案，列出所有步骤、所需输入和存储位置
-2. **Step 1 — 命名设置**：设定 Agent 名字和用户称呼
-3. **Step 2 — 文件管理**：创建规范的工作区目录（含 Tools、Sessions）
-4. **Step 3 — Obsidian 设置**：构建三级知识库
-5. **Step 4 — 办事习惯**：保存交互协议到记忆库
-6. **Step 5 — 会话配置**：设置自动归档和归档目录
-7. **Step 6 — 验证报告**：生成完成报告
-
-### 示例会话
-
-```
-用户: 初始化调校
-
-Agent: 您好！我是 Hermes Agent 的初始化助手...
-       [展示完整初始化方案]
-       
-用户: 开始
-
-Agent: 【Step 1: 命名】请告诉我...
-       [收集偏好并保存到记忆]
-       
-用户: Alice / 艾莉丝 / Boss
-
-Agent: 已记录：我是艾莉丝（Alice），今后称呼您为 Boss。
-       [继续后续步骤...]
-
-═══════════════════════════════════
-  Agent 初始化调校完成报告
-═══════════════════════════════════
-...
-```
-
-## 工作流程图
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Step 0: 规划阶段                          │
-│  展示完整方案 → 等待用户确认                                  │
-└──────────────────────────┬──────────────────────────────────┘
-                           │ 用户说"开始"
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│              Step 1: Agent 命名                              │
-│  收集：英文名、中文名、用户称呼                               │
-│  存储：记忆库（跨会话持久化）                                  │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│            Step 2: 文件管理                                  │
-│  创建：Chat/、Department/、Tools/、Sessions/ 目录                    │
-│  存储：文件系统 + 记忆库约定                                   │
-│  额外：配置 sessions.auto_archive + archive_dir                      │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│            Step 3: Obsidian 知识库                           │
-│  创建：Memory-hub、Collect-hub、Knowledge-hub                 │
-│  存储：文件系统 + 记忆库约定                                   │
-│  前提：需安装 Obsidian                                        │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│            Step 4: 办事习惯                                  │
-│  保存：先分析后执行、需批准才能行动                            │
-│  存储：记忆库                                                │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│            Step 5: 会话归档配置                              │
-│  配置：sessions.auto_archive + archive_dir                   │
-│  存储：Hermes config.yaml                                   │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│              Step 6: 验证报告                                │
-│  生成包含所有设置的完成报告                                    │
-└─────────────────────────────────────────────────────────────┘
-```
-
-## 目录结构
-
-初始化完成后，您的工作区将按如下结构组织：
-
-```
-工作区根目录/
-├── Chat/                          # 日常对话文件
-│   └── YYYY-MM-DD-主题/
-│       ├── Temp/                  # 临时文件
-│       └── output/                # 产出物
-│
-├── Department/                    # 部门/团队任务文件
-│   └── 部门名/
-│       └── Project/
-│           └── 项目类型-名称/
-│               ├── temp/          # 临时文件
-│               └── output/        # 产出物
-│
-├── Tools/                         # 工作工具（图片处理等）
-│
-└── Sessions/                      # Agent会话归档（自动归档）
-    └── <日期>-<会话ID>/           # 归档的会话文件
-
-Obsidian 库/
-├── Memory-hub/                    # 记忆区 — 日常经验和洞察
-├── Collect-hub/                   # 收藏区 — 资料收藏
-└── Knowledge-hub/                 # 知识区 — 结构化知识
-```
-
-## 记忆条目
-
-Skill 会向 Hermes 记忆库保存以下条目：
-
-| 条目 | 内容 |
-|------|------|
-| Agent 名 | `Agent英文名 <name>，中文名 <name-cn>` |
-| 用户称呼 | `用户称呼为 <address>` |
-| 工作区路径 | `默认工作区：<path>` |
-| 文件约定 | Chat/Department/Tools/Sessions 目录结构 |
-| Obsidian 路径 | 库根目录和三个子库路径 |
-| 知识流向 | `记忆区 → 收藏区 → 知识区` |
-| 工作习惯 | 先分析后执行、需批准才能行动 |
-| 会话归档 | `Sessions 归档目录：<path>\Sessions，自动归档：3天` |
-
----
-
-## 跨 Agent 兼容性
-
-本 Skill 遵循 **[agentskills.io](https://agentskills.io)** 开放标准，同一份 `SKILL.md` 可在多个主流 AI Agent 平台运行。
-
-### 已验证兼容的 Agent 平台
-
-| Agent 平台 | 兼容性 | 路径 |
-|-----------|--------|------|
-| **Hermes Agent** | ✅ 原生支持 | `~/.hermes/skills/` |
-| **Claude Code** | ✅ 原生支持 | `~/.claude/skills/` |
-| **OpenAI Codex** | ✅ 原生支持 | `~/.agents/skills/` |
-| **OpenClaw** | ✅ 原生支持 | `~/.agents/skills/` |
-| **Vercel skills.sh** | ✅ 原生支持 | `~/.skills/` |
-| **LobeHub** | ✅ 原生支持 | 通过 `.well-known/skills/index.json` |
-| **Cursor** | ⚠️ 需转换脚本 | 自动生成 `.cursorrules` |
-| **Aider** | ⚠️ 需转换脚本 | 自动生成 `CONVENTIONS.md` |
-
-### 配置共享目录
-
-在 Hermes 的 `config.yaml` 中添加外部技能目录：
-
-```yaml
-skills:
-  external_dirs:
-    - ~/.agents/skills/      # 共享技能库
-    - ~/.claude/skills/      # Claude Code 技能
-```
-
-### 注意事项
-
-- ✅ Hermes 专有字段（`metadata.hermes.*`）会被其他 Agent 忽略，安全无影响
-- ✅ 核心技能格式跨平台通用，无需重复编写
-- ⚠️ 部分 Hermes 专用工具在其他 Agent 中不可用，但基础功能仍生效
-
----
-
-## 前置要求
-
-- **Hermes Agent** 已安装并运行
-- **Obsidian**（可选）— 仅 Step 3 需要；如未安装可跳过
-- **基本终端访问权限** — 用于执行目录创建命令
-
-## 注意事项
-
-### 用户须知
-- ✅ 仔细审阅 Step 0 的方案后再确认
-- ✅ 提供绝对路径（如 `F:\workspace\Hermes-Workspace`）
-- ✅ 如需 Step 3 的知识库功能，请确保已安装 Obsidian
-
-### 技能作者须知
-- ⚠️ 未经用户明确批准绝不擅自执行
-- ⚠️ 使用 `terminal` 命令验证目录创建是否成功
-- ⚠️ 记忆条目保持简洁（一条记忆一个事实）
-- ⚠️ Windows 上使用正斜杠（如 `C:/Users/...`）
-
-## 相关 Skills
-
-- [`hermes-agent`](https://hermes-agent.nousresearch.com/docs) — Hermes Agent 核心配置
-- [`obsidian`](../note-taking/obsidian) — 读取和编辑 Obsidian 笔记
-- [`weekly-review-planning`](../productivity/weekly-review-planning) — 定期维护知识库
-
-## 许可证
-
-MIT License — 详见 [LICENSE](LICENSE)
-
-## 作者
-
-Hermes Agent
-
-## 支持
-
-- Hermes Agent 文档：https://hermes-agent.nousresearch.com/docs
-- GitHub Issues：[创建 Issue](https://github.com/VockDair/Agent-start-use-skill/issues)
-
----
-
-<div align="center">
-
-**用 ❤️ 为 Hermes Agent 社区打造**
-
-</div>
+- v0.5.0 — 每步添加详细功能描述；Step 3 拆分为 5 个子步骤；新增会话归档配置
+- v0.4.0 — 修正部门目录路径（Software-Development-Department）
+- v0.3.0 — 新增 Kanban 项目目录规范和团队配置步骤
+- v0.2.0 — 初始版本
