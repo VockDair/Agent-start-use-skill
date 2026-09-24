@@ -76,20 +76,40 @@ Don't use for: one-off preference changes (use memory directly), technical Herme
 
 | 目录 | 用途 | 示例路径 |
 |------|------|----------|
-| `Chat/` | Agent对话临时文件和输出 | `F:/workspace/.../Chat/2026-08-30-需求分析/` |
-| `Department/` | 各部门项目目录 | `F:/workspace/.../Department/Software-Development-Department/` |
-| `Tools/` | 工作工具（图片处理、脚本等） | `F:/workspace/.../Tools/` |
-| `Sessions/` | Agent会话归档（自动清理） | `F:/workspace/.../Sessions/` |
+| `Chat/` | Agent对话临时文件和输出（三级结构） | `D:/WorkSpace/Hermes-workspace/Chat/<日期>-<会话主题>/<内容名>/` |
+| `Department/` | 各部门项目目录 | `D:/WorkSpace/Hermes-workspace/Department/Software-Development-Department/` |
+| `Tools/` | 工作工具（图片处理、脚本等） | `D:/WorkSpace/Hermes-workspace/Tools/` |
+| `Sessions/` | Agent会话归档（自动清理） | `D:/WorkSpace/Hermes-workspace/Sessions/` |
 | `kanban-workspace/` | Kanban任务临时文件 | `Department/<部门>/Project/<项目>/kanban-workspace/` |
+
+**Chat/ 三级结构规范：**
+```
+Chat/
+├── <日期>-<会话主题>/                    # 第一级：会话主题目录
+│   ├── <内容名>/                        # 第二级：会话中的具体内容
+│   │   ├── temp/                        # 临时文件（草稿、中间结果）
+│   │   └── output/                      # 最终产物（报告、图表、文档等）
+│   ├── <内容名2>/
+│   │   ├── temp/
+│   │   └── output/
+│   └── ...
+└── ...
+```
+
+- **第一级 `<日期>-<会话主题>`**：格式 `YYYYMMDD-会话主题`，如 `20260925-即兴创作歌曲`
+- **第二级 `<内容名>`**：会话中具体创作/处理的对象名称，如歌曲名 A/B、项目名等
+- **temp/**：对话过程中产生的草稿、中间结果
+- **output/**：任务完成后的最终输出文件
 
 **为什么重要：** 
 - 避免文件散落各处难以查找
 - 方便后续检索和历史追溯
 - 支持多部门协作时保持结构清晰
 - Git版本控制更整洁（只追踪代码，不追踪临时文件）
+- Chat 三级结构让资源管理器中查看整齐顺眼
 
 **Inputs required from user:**
-- Default workspace root path (e.g., `F:\workspace\Hermes-Workspace`)
+- Default workspace root path (e.g., `D:\WorkSpace\Hermes-workspace`)
 - Whether to create subdirectories (`Chat/`, `Department/`, `Tools/`, `Sessions/`)
 - Optional: alternative paths per section
 
@@ -106,8 +126,7 @@ Don't use for: one-off preference changes (use memory directly), technical Herme
    ```
 
 3. Save file structure convention to memory via `memory`:
-   - Chat temp: `<workspace>/Chat/<日期-对话主题>/Temp/`
-   - Chat output: `<workspace>/Chat/<日期-对话主题>/output/`
+   - Chat 三级结构：`<workspace>/Chat/<日期>-<会话主题>/<内容名>/temp` 和 `output/`
    - **Dept projects: `<workspace>/Department/<部门名称>/Project/<项目名>/`**
    - **Kanban workspace: `<workspace>/Department/<部门名称>/Project/<项目名>/kanban-workspace/`**
    - Tools: `<workspace>/Tools/` — 存储工作工具（如图片处理工具）
@@ -117,7 +136,7 @@ Don't use for: one-off preference changes (use memory directly), technical Herme
    - 所有部门统一使用此结构
    - `kanban-workspace/` 用于Kanban任务临时文件存放
    - Git worktree自动创建在 `.worktrees/` 目录
-   - 示例：`F:/workspace/Hermes-Workspace/Department/Software-Development-Department/Project/Game-xiaoxiaole/kanban-workspace/`
+   - 示例：`D:/WorkSpace/Hermes-workspace/Department/Software-Development-Department/Project/Game-xiaoxiaole/kanban-workspace/`
 
 5. Configure session auto-archive:
    ```bash
@@ -460,6 +479,7 @@ director 代码审查 → tester 验收测试
 二、文件管理规范
   默认工作区：[路径]
   Chat目录：[路径]\Chat\ （已创建 ✓）
+    - 三级结构：<workspace>/Chat/<日期>-<会话主题>/<内容名>/temp + output
   Department目录：[路径]\Department\ （已创建 ✓）
   部门项目目录：[路径]\Department\<部门名称>\Project\ （已创建 ✓）
   Kanban工作区规范：<workspace>/Department/<部门名称>/Project/<项目名>/kanban-workspace/
