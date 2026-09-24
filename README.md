@@ -20,8 +20,13 @@
 
 ### Step 2: 文件管理规范
 - 建立工作区根目录和子目录结构
+- **Chat/ 三级结构：**
+  - `Chat/<日期>-<会话主题>/<内容名>/temp/` — 临时文件（草稿、中间结果）
+  - `Chat/<日期>-<会话主题>/<内容名>/output/` — 最终产物（报告、图表、文档等）
+  - 第一级 `<日期>-<会话主题>`：格式 `YYYYMMDD-会话主题`，如 `20260925-即兴创作歌曲`
+  - 第二级 `<内容名>`：会话中具体创作的对象，如歌曲名 A/B
 - **部门项目结构：**
-  - `F:/workspace/Hermes-Workspace/Department/<部门名称>/Project/<项目名>/`
+  - `D:/WorkSpace/Hermes-workspace/Department/<部门名称>/Project/<项目名>/`
   - Kanban 工作区：`<项目名>/kanban-workspace/`
   - Git worktree 自动创建在 `.worktrees/`
 
@@ -69,6 +74,7 @@
 
 ## 版本历史
 
+- v0.6.0 — Chat/ 目录更新为三级结构（<日期>-<会话主题>/<内容名>/temp+output）；工作区路径改为 D:/WorkSpace/Hermes-workspace
 - v0.5.0 — 每步添加详细功能描述；Step 3 拆分为 5 个子步骤；新增会话归档配置
 - v0.4.0 — 修正部门目录路径（Software-Development-Department）
 - v0.3.0 — 新增 Kanban 项目目录规范和团队配置步骤
